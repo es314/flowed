@@ -28,8 +28,9 @@
     "coverage:send": "nyc report --reporter=text-lcov | coveralls",
     "posttest": "npm run lint",
     "lint": "tslint -p tsconfig.json -t verbose && tslint -p tsconfig.test.json -t verbose",
-    "format": "tslint -p tsconfig.json -t verbose --fix && tslint -p tsconfig.test.json -t verbose --fix && prettier --write \"src/**/*.ts\" \"src/**/*.js\" && prettier --write \"test/**/*.ts\" \"test/**/*.js\"",
-    "release:prepare": "./ops/updateSonarProps.sh && rm -rf ./dist ./node_modules package-lock.json && npm install && npm-consider install --test && npm run format && npm run build && npm test && git status"
+    "lint:fix": "tslint -p tsconfig.json -t verbose --fix && tslint -p tsconfig.test.json -t verbose --fix && prettier --write \"src/**/*.ts\" \"src/**/*.js\" && prettier --write \"test/**/*.ts\" \"test/**/*.js\"",
+    "release:prepare": "./ops/updateSonarProps.sh && rm -rf ./dist ./node_modules package-lock.json && npm install && npm-consider install --test && npm run format && npm run build && npm test && git status",
+    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx"
   },
   "config": {
     "maxPackagesNumber": 300,
@@ -50,11 +51,16 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "@types/node": "^13.1.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.9",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint": "^6.8.0",
     "mocha": "^6.2.1",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
